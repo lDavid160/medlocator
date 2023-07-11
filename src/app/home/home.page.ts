@@ -13,36 +13,37 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
 
   }
-  async informacion(informacion_string:string) {
+  async informacion(informacion_string:string,name:string) {
     console.log("Ejecutado")
     let informacion_json = JSON.parse(informacion_string)
     const alert = await this.alertController.create({
-      header: 'Información Relacionada',
-      message: "",
+      header: name,
+      message: '',
+      cssClass: 'alerta_estilo',
       inputs:[
         {
           name:"Dirección",
-          type:"text",
+          type:"textarea",
           placeholder:`Dirección:  ${informacion_json.direccion}`,
-          disabled:true
+          disabled:false
         },
         {
           name:"Especialidades",
-          type:"text",
+          type:"textarea",
           placeholder:`Especialidades:  ${informacion_json.especialidades}`,
-          disabled:true
+          disabled:false
         },
         {
           name:"Longitud",
-          type:"text",
+          type:"textarea",
           placeholder:`Longitud:  ${informacion_json.longitud}`,
-          disabled:true
+          disabled:false
         },
         {
           name:"Latitud",
-          type:"text",
+          type:"textarea",
           placeholder:`Latitud:  ${informacion_json.latitud}`,
-          disabled:true
+          disabled:false
         }
       ],
 
