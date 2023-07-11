@@ -9,6 +9,8 @@ export class AppComponent {
 
     { title: 'Hospitales', url: '/home', icon: 'medkit' },
     { title: 'Favoritos', url: '/favorites', icon: 'heart' },
+    { title: 'Mapa', url: '/mapa', icon: 'locate' },
+    { title: 'Login', url: '/login', icon: 'person' },
   ];
 
   constructor() {}
