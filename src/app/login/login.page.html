@@ -1,14 +1,36 @@
 <ion-header [translucent]="true">
-
   <ion-toolbar color="mis_colores">
   <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
 
-
-  <ion-content>
-    <ion-list>
-    </ion-list>
-  </ion-content>
+<ion-content>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Login</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="formularioLogin">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre"> </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password"> </ion-input>
+      </ion-item>
+    </form>
+    <br>
+    <ion-button (clik)="ingresar()">
+      ingresar
+    </ion-button>
+  </ion-card-content>
+</ion-card>
 </ion-content>
+<ion-footer>
+  <ion-toolbar color = "mis_colores">
+    <ion-buttons slot="end">
+        <ion-button [routerLink]="['/registro']">Registrarse</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

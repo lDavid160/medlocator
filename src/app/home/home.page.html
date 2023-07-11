@@ -6,9 +6,8 @@
 </ion-header>
 <ion-content [fullscreen]="true">
 
-  <div id="container">
-  <button [routerLink]="['/favorites']" class="btn">Favoritos</button>
-  </div>
+
+
 
   <ion-content>
     <ion-list>
@@ -20,5 +19,14 @@
         <ion-button (click)="informacion(Hospital.informacion)" slot="end" fill="clear">Informacion</ion-button>
       </ion-item>
     </ion-list>
+    <ion-footer>
+      <ion-toolbar color = "mis_colores">
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/favorites']" class="btn">Favoritos</ion-button>
+            <ion-button [routerLink]="['/mapa']" class="btn">mapa</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
   </ion-content>
+
 </ion-content>
