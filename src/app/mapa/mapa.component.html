@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar color="mis_colores">
+    <ion-title>Mapa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+   <!-- <div id="container" name="container">
+  <button [routerLink]="['/home']" class="btn">Hospitales</button>
+  </div> -->
+
+  <div id="map" *ngIf="apiLoaded | async">
+    <google-map 
+    height="100%"
+    width="100%" 
+    [options]="options"
+    (mapClick)="moveMap($event)"
+    (mapMousemove)="move($event)"
+    (mapClick)="addMarker($event)">
+
+    <map-circle [center]="circleCenter"
+              [radius]="radius"></map-circle>
+
+    <map-marker *ngFor="let markerPosition of markerPositions"
+    [position]="markerPosition"
+    [options]="markerOptions"></map-marker>
+
+  </google-map>
+  </div>
+
+  <div id="container">
+    <button (click)="locate()" class="btn">Mi Ubicación</button>
+    <div hidden>Latitude: {{display?.lat}}</div>
+    <div hidden>Longitude: {{display?.lng}}</div>
+  </div>
+
+  
+
+</ion-content>
+
+

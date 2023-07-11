@@ -1,7 +1,8 @@
 {
   "name": "HospitalAppV1",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
