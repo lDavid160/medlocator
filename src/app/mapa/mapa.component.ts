@@ -19,7 +19,7 @@ export class MapaComponent  implements OnInit {
 
   apiLoaded: Observable<boolean>;
 
-  constructor(private geo:Geolocation,httpClient: HttpClient) { 
+  constructor(private geo:Geolocation,public httpClient: HttpClient) { 
     this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyBoiUfgPaT0CZCKFm9CSdbPIYLrpSCtcvI', 'callback')
         .pipe(
           map(() => true),
@@ -43,21 +43,27 @@ export class MapaComponent  implements OnInit {
     this.actualizarCoords();
   }
 
-  options: google.maps.MapOptions = {
-    center: {lat: 5.070275, lng: -75.513817},
-    //center: {lat:  this.coords.latitude, lng: this.coords.longitude},
-    zoom: 16
-  };
+  // options: google.maps.MapOptions = {
+  //   center: {lat: 5.070275, lng: -75.513817},
+  //   //center: {lat:  this.coords.latitude, lng: this.coords.longitude},
+  //   zoom: 16
+  // };
+
+  center: google.maps.LatLngLiteral = {lat: 5.070275, lng: -75.513817};
+  zoom = 16;
+  display?: google.maps.LatLngLiteral;
+
+  mapa?: google.maps.Map;
 
   circleCenter: google.maps.LatLngLiteral = {lat: 5.070275, lng: -75.513817};
   radius = 3;
 
-  display?: google.maps.LatLngLiteral;
-
   
   // cada que se mueve el mapa cambia el centro
   moveMap(event: google.maps.MapMouseEvent) {
-    this.options.center = (event.latLng?.toJSON());
+    if (event.latLng != null) {
+      this.center = (event.latLng?.toJSON());
+    }
   }
   
 
@@ -68,9 +74,10 @@ export class MapaComponent  implements OnInit {
   
   //Luego de obtener las coordenadas actuales se pasan al mapa
   actualizarCoords(){
-    if(this.options.center != null){
-      this.options.center.lat = this.coords.latitude;
-      this.options.center.lng = this.coords.longitude;
+    
+    if(this.center != null){
+      this.center.lat = this.coords.latitude;
+      this.center.lng = this.coords.longitude;
 
       this.circleCenter.lat = this.coords.latitude;
       this.circleCenter.lng = this.coords.longitude;
@@ -81,15 +88,28 @@ export class MapaComponent  implements OnInit {
         this.display.lng = this.coords.longitude;
 
         console.log("Coordenadas actualizadas a ",this.display);
-
       }
+
+      
+      this.mapa?.panTo(this.center);
+
+      console.log(this.mapa);
+      // this.apiLoaded = this.httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyBoiUfgPaT0CZCKFm9CSdbPIYLrpSCtcvI', 'callback')
+      //   .pipe(
+      //     map(() => true),
+      //     catchError(() => of(false)),
+      //   );
+      
+
     }
+
   }
 
   // Marker options
 
   markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
+
 
   addMarker(event: google.maps.MapMouseEvent) {
     if (event.latLng != null){

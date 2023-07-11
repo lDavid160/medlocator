@@ -24,3 +24,24 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+//  .alerta_estilo div{
+//      width: 300%;
+//    }
+
+  .alert-wrapper.ion-overlay-wrapper.sc-ion-alert-md {
+    width: 80% ;
+    max-width: none;
+    color: white;
+  }
+
+  .alert-wrapper.ion-overlay-wrapper.sc-ion-alert-md ::placeholder{
+    color:white;
+  }
+
+  .alert-wrapper.ion-overlay-wrapper.sc-ion-alert-md :disabled{
+    opacity: 100%;
+  }
+
+

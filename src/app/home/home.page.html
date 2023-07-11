@@ -17,7 +17,7 @@
           <ion-img [src]= "Hospital.imagen" ></ion-img>
         </ion-avatar>
         <ion-label>{{Hospital.name}}</ion-label>
-        <ion-button (click)="informacion(Hospital.informacion)" slot="end" fill="clear">Informacion</ion-button>
+        <ion-button (click)="informacion(Hospital.informacion,Hospital.name)" slot="end" fill="clear">Informacion</ion-button>
       </ion-item>
     </ion-list>
   </ion-content>
