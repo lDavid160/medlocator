@@ -6,19 +6,26 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-   <div id="container">
+   <div id="container" hidden>
   <button [routerLink]="['/home']" class="btn">Hospitales</button>
   </div>
 
-  <ion-content>
+  <ion-content *ngIf="service.loggedIn">
     <ion-list>
-      <ion-item>
+      <ion-item *ngFor="let favorite of favorites; index as i">
         <ion-avatar slot="start">
-          <ion-img src="ruta-a-tu-imagen1.jpg"></ion-img>
+          <ion-img [src]="favorite.datos_adicionales.imagen"></ion-img>
         </ion-avatar>
-        <ion-label>Elemento 1</ion-label>
-      </ion-item>
+        <ion-label>{{favorite.favorite.favorite_custom_name}}</ion-label>
+        <ion-button (click)="informacion(favorite)" slot="end" fill="clear">Informacion</ion-button>
+        <ion-button style="color:orange;" (click)="eliminar(favorite)" slot="end" fill="clear">Eliminar</ion-button>
 
+      </ion-item>
     </ion-list>
   </ion-content>
+
+  <ion-item *ngIf="!service.loggedIn">
+    <ion-label  class="no_logueado">Por favor inicie sesión...</ion-label>
+  </ion-item>
+
 </ion-content>

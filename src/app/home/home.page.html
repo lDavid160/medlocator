@@ -6,10 +6,7 @@
 </ion-header>
 <ion-content [fullscreen]="true">
 
-
-
-
-  <ion-content>
+  <ion-content *ngIf="service.loggedIn">
     <ion-list>
       <ion-item *ngFor="let Hospital of hospitales">
         <ion-avatar slot="start">
@@ -20,13 +17,16 @@
       </ion-item>
     </ion-list>
     <ion-footer>
-      <ion-toolbar color = "mis_colores">
-        <ion-buttons slot="start">
+      <!-- <ion-toolbar color = "mis_colores">
+        <ion-buttons slot="start" hidden>
             <ion-button [routerLink]="['/favorites']" class="btn">Favoritos</ion-button>
             <ion-button [routerLink]="['/mapa']" class="btn">mapa</ion-button>
         </ion-buttons>
-      </ion-toolbar>
+      </ion-toolbar> -->
     </ion-footer>
   </ion-content>
+  <ion-item *ngIf="!service.loggedIn">
+    <ion-label  class="no_logueado">Por favor inicie sesión...</ion-label>
+  </ion-item>
 
 </ion-content>

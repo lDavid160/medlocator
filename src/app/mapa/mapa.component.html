@@ -6,37 +6,51 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-   <!-- <div id="container" name="container">
-  <button [routerLink]="['/home']" class="btn">Hospitales</button>
-  </div> -->
+  <ion-content *ngIf="service.loggedIn">
+    <!-- <div id="container" name="container">
+    <button [routerLink]="['/home']" class="btn">Hospitales</button>
+    </div> -->
 
-  <div id="map" *ngIf="apiLoaded | async">
-    <google-map 
-    height="100%"
-    width="100%" 
-    [center]="center"
-    (mapClick)="moveMap($event)"
-    (mapMousemove)="move($event)"
-    (mapClick)="addMarker($event)">
+    <div id="map" *ngIf="apiLoaded | async">
+      <google-map 
+      [autofocus]="true"
+      height="100%"
+      width="100%" 
+      [center]="center"
+      (mapClick)="moveMap($event)"
+      (mapMousemove)="move($event)"
+      (mapClick)="addMarker($event)">
 
-    <map-circle [center]="circleCenter"
-              [radius]="radius"></map-circle>
+      <map-circle *ngIf="circleCenter != undefined" [center]="circleCenter"
+                [radius]="radius"></map-circle>
 
-    <map-marker *ngFor="let markerPosition of markerPositions"
-    [position]="markerPosition"
-    [options]="markerOptions"></map-marker>
+      <map-marker #marker = "mapMarker"
+      *ngFor="let markerPosition of markerPositionsInput"
+      [position]="markerPosition.position"
+      [options]="markerPosition.options"
+      [label]="markerPosition.label"
+      [title]="markerPosition.title"
+      (mapClick)="openWindow(marker,markerPosition.title)"></map-marker>
 
-  </google-map>
-  </div>
+      <map-info-window>{{infoContent}}</map-info-window>
 
-  <div id="container">
-    <button (click)="locate()" class="btn">Mi Ubicación</button>
-    <div hidden>Latitude: {{display?.lat}}</div>
-    <div hidden>Longitude: {{display?.lng}}</div>
-  </div>
+    </google-map>
+    </div>
 
-  
+    <div id="container">
+      <button (click)="locate()" class="btn">Mi Ubicación</button>
+      <button (click)="mostrarHospitales()" class="btn">Hospitales</button>
+      <div hidden>Latitude: {{display?.lat}}</div>
+      <div hidden>Longitude: {{display?.lng}}</div>
+    </div>
+
+  </ion-content>
+
+  <ion-item *ngIf="!service.loggedIn">
+    <ion-label  class="no_logueado">Por favor inicie sesión...</ion-label>
+  </ion-item>
 
 </ion-content>
+
 
 

@@ -12,11 +12,17 @@ ion-toolbar{
   }
   
   #container{
+    padding: 2%;
     text-align: center;
   }
 
+  #container button{
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
   #map{
-    height: 94%;
+    height: 90%;
     width: 100%;
   }
 
@@ -24,3 +30,13 @@ ion-toolbar{
     margin:0 auto;
   }
 
+  .no_logueado{
+    font-size: 25px;
+    padding:5%;
+    width: 100%;
+    text-align: center;
+  }
+
+  map-info-window{
+    color:black;
+  }
