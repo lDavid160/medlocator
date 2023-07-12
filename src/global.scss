@@ -33,11 +33,11 @@
   .alert-wrapper.ion-overlay-wrapper.sc-ion-alert-md {
     width: 80% ;
     max-width: none;
-    color: white;
+    color: var(--color);
   }
 
   .alert-wrapper.ion-overlay-wrapper.sc-ion-alert-md ::placeholder{
-    color:white;
+    color:var(--color);
   }
 
   .alert-wrapper.ion-overlay-wrapper.sc-ion-alert-md :disabled{

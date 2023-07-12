@@ -102,7 +102,7 @@ export class LoginPage implements OnInit {
 
   iniciarSesion(){
     this.service.loggedIn = true
-    this.setWithExpiry("user",this.usuario.email,3000000) //300000 5 mins
+    this.setWithExpiry("user",this.usuario.email,300000) //300000 5 mins
     this.service.inicio_reciente = true
     this.router.navigate(['/mapa'])
   }
